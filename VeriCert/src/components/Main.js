@@ -1,6 +1,57 @@
 import React, {Component} from 'react';
+import {db,auth} from '../services/firebase'
+
 
 class Main extends Component{
+
+
+
+
+  renderResult(index){
+    return(
+      <div>
+        <div className="card mb-4">
+                          <div className="card-header">
+                            <small className="text-mutet">author</small>
+                          </div>
+
+                          <ul id="postList" className="list-group list-group-flush">
+                              <li className="list-group-item">
+                                <p>Name: {this.props.certs[0].name}</p>
+                                <p>Course: </p>
+                                <p>Results: </p>
+                              </li>      
+                                          
+                              <li  className="list-group-item py-2">
+                                <p>Issue date: </p>
+                                <p>IC: </p>
+                              </li>
+                            </ul>
+
+                        </div>
+
+      </div>
+      )
+  }
+
+
+    queryData(input){
+
+      db.collection('students').where("ic", "==", input)
+        .get()
+        .then(snapshot => {
+          snapshot.forEach(doc =>{
+            var id = doc.data().id           
+            //call function with param id to render result 
+            this.renderResult(id)
+          })
+
+        })
+        .catch(function(error){
+          console.log(error);
+        })
+        console.log("query function")
+    }
 
 
 
@@ -18,24 +69,23 @@ class Main extends Component{
           <div className="row">
             <main role="main" className="col-lg-12 d-flex text-center">
               <div className="content mr-auto ml-auto">
-              <p>&nbsp;</p>
-              <p>{this.props.certs[1].name}</p>
-
-              <div>
-               <form onSubmit={(event) =>{
-                event.preventDefault()
-                const ic = this.icContent.value
-                const name = this.nameContent.value
-                const course = this.courseContent.value
-                const result = this.resultContent.value
-                const date = this.dateContent.value
-                this.props.createCert(ic,name,course,result,date)
-                const id = this.props.certCount.toNumber()+1
-                this.props.addNewStudent(id,ic)
-                }}>
 
 
-                <div className="form-group mr-sm-2">
+               <div>
+                  <form onSubmit={(event) =>{
+                    event.preventDefault()
+                    const ic = this.icContent.value
+                    const name = this.nameContent.value
+                    const course = this.courseContent.value
+                    const result = this.resultContent.value
+                    const date = this.dateContent.value
+                    this.props.createCert(ic,name,course,result,date)
+                    const id = this.props.certCount.toNumber()+1
+                    this.props.addNewStudent(id,ic)
+                  }}>
+
+
+                  <div className="form-group mr-sm-2">
                   <input
                     id="icContent"
                     type="text"
@@ -43,9 +93,9 @@ class Main extends Component{
                     className="form-control"
                     placeholder="Enter IC"
                     required />
-                </div>
+                  </div>
 
-                <div className="form-group mr-sm-2">
+                  <div className="form-group mr-sm-2">
                   <input
                     id="nameContent"
                     type="text"
@@ -53,9 +103,9 @@ class Main extends Component{
                     className="form-control"
                     placeholder="Enter name"
                     required />
-                </div>
+                  </div>
 
-                <div className="form-group mr-sm-2">
+                  <div className="form-group mr-sm-2">
                   <input
                     id="courseContent"
                     type="text"
@@ -63,9 +113,9 @@ class Main extends Component{
                     className="form-control"
                     placeholder="Enter course"
                     required />
-                </div>
+                  </div>
 
-                <div className="form-group mr-sm-2">
+                  <div className="form-group mr-sm-2">
                   <input
                     id="resultContent"
                     type="text"
@@ -73,9 +123,9 @@ class Main extends Component{
                     className="form-control"
                     placeholder="Enter result"                  
                     required />
-                </div>
+                  </div>
 
-                <div className="form-group mr-sm-2">
+                  <div className="form-group mr-sm-2">
                   <input
                     id="dateContent"
                     type="text"
@@ -83,28 +133,33 @@ class Main extends Component{
                     className="form-control"
                     placeholder="Enter issue date"                    
                     required />
-                </div>
+                  </div>
 
-                <button type="submit" className="btn btn-primary btn-block"> Create </button>
-              </form>
+                  <button type="submit" className="btn btn-primary btn-block"> Create </button>
+                </form>
               </div>
 
 
               <p>&nbsp;</p>
 
+
+
               <div>
 
                 <form onSubmit={(event) =>{
                   event.preventDefault()
+                  const ic = this.icContent.value
+                  this.queryData(ic)
+                  this.renderResult()
                   
 
                 }}>
                   <label>
-                    ID:
+                    IC:
                     <input 
-                      id="id"
+                      id="icContent"
                       type="text"
-                      ref={(input) => {this.id=input}}/>
+                      ref={(input) => {this.icContent=input}}/>
                   </label>
 
                   <button type="submit">search</button>
@@ -113,10 +168,10 @@ class Main extends Component{
 
               </div>
 
-              <p>&nbsp;</p>
+
               <p>&nbsp;</p>
 
-
+              
                   { this.props.certs.map((cert, key) => {
                       return(
                         <div className="card mb-4" key={key}>
@@ -141,6 +196,7 @@ class Main extends Component{
                     )
 
                 })}
+
 
 
 

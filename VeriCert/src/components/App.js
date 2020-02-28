@@ -91,22 +91,25 @@ class App extends Component {
     }
 
 
-    queryData(input){
+ /*   queryData(input){
 
       db.collection('students').where("ic", "==", input)
         .get()
         .then(snapshot => {
           snapshot.forEach(doc =>{
             var id = doc.data().id
-            console.log(id)
+            this.setState={
+              index: id
+            }
+            console.log({index: this.state.index})
           })
 
         })
         .catch(function(error){
           console.log(error);
         })
-        console.log("query function")
-    }
+       // console.log("query function")
+    } */
 
 
 
@@ -119,10 +122,11 @@ class App extends Component {
       certCount: 0,
       certs: [],
       loading: true,
+      resultId: null
     }
     this.createCert = this.createCert.bind(this)
     this.addNewStudent = this.addNewStudent.bind(this)
-    this.queryData = this.queryData.bind(this)
+   // this.queryData = this.queryData.bind(this)
   }
 
 
@@ -136,8 +140,10 @@ class App extends Component {
           :<Main 
           certs={this.state.certs} 
           certCount={this.state.certCount}
+          resultId={this.state.resultId}
           createCert={this.createCert}
           addNewStudent={this.addNewStudent}
+         // queryData={this.queryData}
           />
 
         }
