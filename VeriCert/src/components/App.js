@@ -91,23 +91,6 @@ class App extends Component {
     }
 
 
-    queryData(input){
-
-      db.collection('students').where("ic", "==", input)
-        .get()
-        .then(snapshot => {
-          snapshot.forEach(doc =>{
-            var id = doc.data().id
-            console.log(id)
-          })
-
-        })
-        .catch(function(error){
-          console.log(error);
-        })
-        console.log("query function")
-    }
-
 
 
 
@@ -123,7 +106,6 @@ class App extends Component {
     }
     this.createCert = this.createCert.bind(this)
     this.addNewStudent = this.addNewStudent.bind(this)
-    this.queryData = this.queryData.bind(this)
   }
 
 

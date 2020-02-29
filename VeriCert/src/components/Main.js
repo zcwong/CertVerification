@@ -1,5 +1,6 @@
 import React, {Component} from 'react';
 import {db,auth} from '../services/firebase'
+import ResultCard from './ResultCard.js'
 
 class Main extends Component{
 
@@ -12,7 +13,8 @@ class Main extends Component{
       }
 
   
-    this.queryData = this.queryData.bind(this);
+    this.queryData = this.queryData.bind(this)
+    this.renderId = this.renderId.bind(this)
     } 
 
 
@@ -41,6 +43,10 @@ class Main extends Component{
         console.log("query function")
     }
 
+   renderId() {
+        console.log("function called")      
+        return <ResultCard resultId={this.state.resultId} certs={this.props.certs} />
+  } 
 
 
   render(){
@@ -131,12 +137,9 @@ class Main extends Component{
                   this.queryData(ic)
                   this.setState({ submitted: true })
 
-
-
-
-                  
-
                 }}>
+
+
                   <label>
                     ID:
                     <input 
@@ -148,6 +151,7 @@ class Main extends Component{
                   <button type="submit">search</button>
 
               </form>
+               {this.state.submitted && this.renderId()}
 
               </div>
 
