@@ -1,41 +1,24 @@
 import React, {Component} from 'react';
 import {db,auth} from '../services/firebase'
 
-
 class Main extends Component{
 
+  constructor(props) {
+      super(props)
+      this.state = {
+       submitted: false,
+       resultId:0
+
+      }
+
+  
+    this.queryData = this.queryData.bind(this);
+    } 
 
 
 
-  renderResult(index){
-    return(
-      <div>
-        <div className="card mb-4">
-                          <div className="card-header">
-                            <small className="text-mutet">author</small>
-                          </div>
 
-                          <ul id="postList" className="list-group list-group-flush">
-                              <li className="list-group-item">
-                                <p>Name: {this.props.certs[0].name}</p>
-                                <p>Course: </p>
-                                <p>Results: </p>
-                              </li>      
-                                          
-                              <li  className="list-group-item py-2">
-                                <p>Issue date: </p>
-                                <p>IC: </p>
-                              </li>
-                            </ul>
-
-                        </div>
-
-      </div>
-      )
-  }
-
-
-    queryData(input){
+  queryData(input){
 
       db.collection('students').where("ic", "==", input)
         .get()
@@ -43,7 +26,12 @@ class Main extends Component{
           snapshot.forEach(doc =>{
             var id = doc.data().id           
             //call function with param id to render result 
-            this.renderResult(id)
+
+            this.setState({resultId: id}, () =>{
+        console.log("test "+this.state.resultId)
+
+      })
+         
           })
 
         })
@@ -55,37 +43,30 @@ class Main extends Component{
 
 
 
-//create global variable index, when create new cert
-//incremet index and put it as id
-//so id will be same as certificate id
+  render(){
+    return(
 
-
-
-
-	render(){
-		return(
-
-		<div className="container-fluid mt-5">
+    <div className="container-fluid mt-5">
           <div className="row">
             <main role="main" className="col-lg-12 d-flex text-center">
               <div className="content mr-auto ml-auto">
+              <p>&nbsp;</p>
+
+              <div>
+               <form onSubmit={(event) =>{
+                event.preventDefault()
+                const ic = this.icContent.value
+                const name = this.nameContent.value
+                const course = this.courseContent.value
+                const result = this.resultContent.value
+                const date = this.dateContent.value
+                this.props.createCert(ic,name,course,result,date)
+                const id = this.props.certCount.toNumber()+1
+                this.props.addNewStudent(id,ic)
+                }}>
 
 
-               <div>
-                  <form onSubmit={(event) =>{
-                    event.preventDefault()
-                    const ic = this.icContent.value
-                    const name = this.nameContent.value
-                    const course = this.courseContent.value
-                    const result = this.resultContent.value
-                    const date = this.dateContent.value
-                    this.props.createCert(ic,name,course,result,date)
-                    const id = this.props.certCount.toNumber()+1
-                    this.props.addNewStudent(id,ic)
-                  }}>
-
-
-                  <div className="form-group mr-sm-2">
+                <div className="form-group mr-sm-2">
                   <input
                     id="icContent"
                     type="text"
@@ -93,9 +74,9 @@ class Main extends Component{
                     className="form-control"
                     placeholder="Enter IC"
                     required />
-                  </div>
+                </div>
 
-                  <div className="form-group mr-sm-2">
+                <div className="form-group mr-sm-2">
                   <input
                     id="nameContent"
                     type="text"
@@ -103,9 +84,9 @@ class Main extends Component{
                     className="form-control"
                     placeholder="Enter name"
                     required />
-                  </div>
+                </div>
 
-                  <div className="form-group mr-sm-2">
+                <div className="form-group mr-sm-2">
                   <input
                     id="courseContent"
                     type="text"
@@ -113,9 +94,9 @@ class Main extends Component{
                     className="form-control"
                     placeholder="Enter course"
                     required />
-                  </div>
+                </div>
 
-                  <div className="form-group mr-sm-2">
+                <div className="form-group mr-sm-2">
                   <input
                     id="resultContent"
                     type="text"
@@ -123,9 +104,9 @@ class Main extends Component{
                     className="form-control"
                     placeholder="Enter result"                  
                     required />
-                  </div>
+                </div>
 
-                  <div className="form-group mr-sm-2">
+                <div className="form-group mr-sm-2">
                   <input
                     id="dateContent"
                     type="text"
@@ -133,33 +114,35 @@ class Main extends Component{
                     className="form-control"
                     placeholder="Enter issue date"                    
                     required />
-                  </div>
+                </div>
 
-                  <button type="submit" className="btn btn-primary btn-block"> Create </button>
-                </form>
+                <button type="submit" className="btn btn-primary btn-block"> Create </button>
+              </form>
               </div>
 
 
               <p>&nbsp;</p>
 
-
-
               <div>
 
                 <form onSubmit={(event) =>{
                   event.preventDefault()
-                  const ic = this.icContent.value
+                  const ic = this.ic.value
                   this.queryData(ic)
-                  this.renderResult()
+                  this.setState({ submitted: true })
+
+
+
+
                   
 
                 }}>
                   <label>
-                    IC:
+                    ID:
                     <input 
-                      id="icContent"
+                      id="ic"
                       type="text"
-                      ref={(input) => {this.icContent=input}}/>
+                      ref={(input) => {this.ic=input}}/>
                   </label>
 
                   <button type="submit">search</button>
@@ -168,10 +151,10 @@ class Main extends Component{
 
               </div>
 
-
+              <p>&nbsp;</p>
               <p>&nbsp;</p>
 
-              
+
                   { this.props.certs.map((cert, key) => {
                       return(
                         <div className="card mb-4" key={key}>
@@ -198,6 +181,10 @@ class Main extends Component{
                 })}
 
 
+           
+
+
+
 
 
 
@@ -207,8 +194,8 @@ class Main extends Component{
         </div>
 
 
-		);
-	}
+    );
+  }
 }
 
 
