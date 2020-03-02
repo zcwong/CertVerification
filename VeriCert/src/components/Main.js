@@ -8,7 +8,8 @@ class Main extends Component{
       super(props)
       this.state = {
        submitted: false,
-       resultId:0
+       resultId: 0,
+       renderComplete: false
 
       }
 
@@ -19,7 +20,7 @@ class Main extends Component{
 
 
 
-
+    //include promise in query data, 
   queryData(input){
 
       db.collection('students').where("ic", "==", input)
@@ -27,12 +28,10 @@ class Main extends Component{
         .then(snapshot => {
           snapshot.forEach(doc =>{
             var id = doc.data().id           
-            //call function with param id to render result 
 
-            this.setState({resultId: id}, () =>{
-        console.log("test "+this.state.resultId)
-
-      })
+            this.setState({resultId: id} , function(){
+              this.setState({renderComplete: true})
+            } )
          
           })
 
@@ -40,13 +39,20 @@ class Main extends Component{
         .catch(function(error){
           console.log(error);
         })
-        console.log("query function")
+        //console.log("query function")
     }
 
+
+
+   //query data as promise, then renderId 
+   //check if finish render, only call
    renderId() {
         console.log("function called")      
         return <ResultCard resultId={this.state.resultId} certs={this.props.certs} />
   } 
+
+
+
 
 
   render(){
@@ -151,7 +157,9 @@ class Main extends Component{
                   <button type="submit">search</button>
 
               </form>
-               {this.state.submitted && this.renderId()}
+
+
+               {this.state.renderComplete && this.renderId()}
 
               </div>
 
