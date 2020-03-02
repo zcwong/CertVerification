@@ -48,10 +48,9 @@ class App extends Component {
       this.setState({veriCert})
       const certCount = await veriCert.methods.certCount().call()
       this.setState({certCount})
-     // console.log(certCount.toNumber())
 
 
-      //load post
+
        //load cert
       for (var i = 1; i <=certCount; i++) {
         const cert = await veriCert.methods.certs(i).call()
@@ -77,7 +76,7 @@ class App extends Component {
     this.setState({loading: true})
     this.state.veriCert.methods.createCert(ic,name,course,result,date).send({from: this.state.account})
     .once('receipt', (receipt) => {
-      this.setState({loading:false})
+     console.log("loaded")
     }) 
   }
 
