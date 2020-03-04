@@ -6,6 +6,14 @@ import VeriCert from '../abis/VeriCert.json'
 import Navbar from './Navbar.js'
 import Main from './Main.js'
 import {db,auth} from '../services/firebase'
+import {BrowserRouter as Router, Route, Switch, Link, Redirect} from "react-router-dom"
+import Home from './Home.js'
+import CertCreate from './CertCreate.js'
+import QueryData from './QueryData.js'
+import CertList from './CertList.js'
+
+
+
 
 class App extends Component {
 
@@ -71,25 +79,15 @@ class App extends Component {
 
 
 
+    createCert(ic,name,course,result,date){
+        this.setState({loading: true})
+        this.state.veriCert.methods.createCert(ic,name,course,result,date).send({from: this.state.account})
+        .once('receipt', (receipt) => {
+         console.log("loaded")
+        }) 
+      }
 
-  createCert(ic,name,course,result,date){
-    this.setState({loading: true})
-    this.state.veriCert.methods.createCert(ic,name,course,result,date).send({from: this.state.account})
-    .once('receipt', (receipt) => {
-     console.log("loaded")
-    }) 
-  }
-
-  addNewStudent(id,ic){
-      db.collection('students')
-        .add({
-          id: id,
-          ic:ic
-
-        })
-    }
-
-
+  
 
 
 
@@ -104,7 +102,7 @@ class App extends Component {
 
     }
     this.createCert = this.createCert.bind(this)
-    this.addNewStudent = this.addNewStudent.bind(this)
+    //this.addNewStudent = this.addNewStudent.bind(this)
   }
 
 
@@ -113,16 +111,50 @@ class App extends Component {
     return (
       <div>
         <Navbar account={this.state.account}/>
-        {this.state.loading
-          ?<div id="loader" className="text-center mt-5"><p>Loading .. </p></div>
-          :<Main 
-          certs={this.state.certs} 
-          certCount={this.state.certCount}
-          createCert={this.createCert}
-          addNewStudent={this.addNewStudent}
-          />
+              <p>&nbsp;</p>
+               <p>&nbsp;</p>
 
-        }
+
+        <Router>
+        <div>
+                <nav>
+                  <li>
+                    <Link to="/">Home</Link>
+                  </li>
+                  <li>
+                    <Link to="/Create">Create cert</Link>
+                  </li>
+                  <li>
+                    <Link to="/Query">Query</Link>
+                  </li>
+                  <li>
+                    <Link to="/List">List</Link>
+                  </li>
+
+                </nav>
+
+          </div>
+
+
+          <Switch>
+            <Route exact path="/" component={Home}/>
+            <Route exact path="/Create" render={()=> <CertCreate 
+              createCert={this.createCert}
+              certCount={this.state.certCount}
+             />} />
+            <Route exact path="/Query" render={()=> <QueryData
+                certs={this.state.certs} 
+              />
+            } />
+            <Route exact path="/List" render={()=> <CertList
+                certs={this.state.certs} 
+              />
+            } />
+
+          </Switch>
+          </Router>
+
+
       </div>
     );
   }

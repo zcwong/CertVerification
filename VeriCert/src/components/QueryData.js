@@ -55,8 +55,11 @@ class QueryData extends React.Component {
 
     render() {
       return (
-        <div>
-           <div>
+              <div className="container-fluid mt-5">
+            <div className="row">
+              
+              <main role="main" className="col-lg-12 d-flex text-center">
+              <div className="content mr-auto ml-auto">
                 <form onSubmit={(event) =>{
                   event.preventDefault()
                   const ic = this.ic.value
@@ -81,9 +84,9 @@ class QueryData extends React.Component {
 
                {this.state.renderComplete && this.renderId()}
 
-              </div>
-          
-
+                </div>
+             </main>
+            </div>
         </div>
       )
     }

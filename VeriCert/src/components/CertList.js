@@ -6,7 +6,11 @@ class CertList extends React.Component {
     render() {
 
         return (
-        <div>
+        
+    <div className="container-fluid mt-5">
+          <div className="row">
+            <main role="main" className="col-lg-12 d-flex text-center">
+              <div className="content mr-auto ml-auto">
             { this.props.certs.map((cert, key) => {
                       return(
                         <div className="card mb-4" key={key}>
@@ -32,6 +36,9 @@ class CertList extends React.Component {
 
                 })}
 
+          </div>
+            </main>
+          </div>
         </div>
       )
     }
