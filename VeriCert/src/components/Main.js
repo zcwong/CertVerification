@@ -48,10 +48,10 @@ class Main extends Component{
                           <Route exact path="/" component={Home}/>
                           <Route exact path="/about" component={AboutPage} />
                           
-                          <Route exact path="/query" render={()=> <QueryData
-                              certs={this.props.certs} 
-                            />
-                          } />
+                           <Route exact path="/query" render={()=> <QueryData
+                          certs={this.props.certs} 
+                        />
+                      } />
 
                           
                           <Route exact path="/login" component={Login}/>

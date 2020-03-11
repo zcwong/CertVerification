@@ -161,7 +161,9 @@ class App extends Component {
                 certCount={this.state.certCount}
                 certs={this.state.certs} 
               />
-              :<Main/>
+              :<Main
+                certs={this.state.certs}
+              />
             }
 
          
