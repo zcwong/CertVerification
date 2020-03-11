@@ -1,6 +1,8 @@
 import React, {Component} from 'react';
 import {BrowserRouter as Router, Route, Switch, Link, Redirect} from "react-router-dom";
 import Home from './Home.js'
+import FailPage from './FailPage.js'
+
 
 
 class Navbar extends Component{
@@ -15,7 +17,7 @@ class Navbar extends Component{
 
 
            <nav className=" flex-md-nowrap p-0 shadow">
-                <Link to="/about">VeriCert</Link>
+                <Link to="/">VeriCert</Link>
                 
             
     
@@ -28,7 +30,6 @@ class Navbar extends Component{
                  </ul>
     
             </nav>
-
 
 
 

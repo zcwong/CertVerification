@@ -5,6 +5,7 @@ import VeriCert from '../abis/VeriCert.json'
 import Navbar from './Navbar.js'
 import Main from './Main.js'
 import {db,auth} from '../services/firebase'
+import fire from '../services/firebase'
 import {BrowserRouter as Router, Route, Switch, Link, Redirect} from "react-router-dom"
 import Home from './Home.js'
 import CertCreate from './CertCreate.js'
@@ -12,6 +13,10 @@ import QueryData from './QueryData.js'
 import CertList from './CertList.js'
 import FailPage from './FailPage.js'
 import AboutPage from './AboutPage.js'
+import Login from './Login'
+import Logged from './Logged.js'
+
+
 
 
 
@@ -88,6 +93,11 @@ class App extends Component {
         }) 
       }
 
+
+    componentDidMount() {
+    this.authListener();
+    }
+
   
 
 
@@ -100,84 +110,68 @@ class App extends Component {
       certCount: 0,
       certs: [],
       loading: true,
+      user:null,
 
     }
     this.createCert = this.createCert.bind(this)
+    this.authListener = this.authListener.bind(this);
+
     //this.addNewStudent = this.addNewStudent.bind(this)
   }
+
+    authListener() {
+    fire.auth().onAuthStateChanged((user) => {
+      console.log(user);
+      if (user) {
+        this.setState({ user });
+      } else {
+        this.setState({ user: null });
+      }
+    });
+  }
+
 
 
 
   render() {
     return (
       <div>
+
+      <div>
+       <Router>
        
+           <nav className=" flex-md-nowrap p-0 shadow">
+                <Link to="/">VeriCert</Link>
+                
+            
+    
+                 <ul className="navbar-nav px-3">
+                   <li className="nav-item text-nowrap d-none d-sm-none d-sm-block">
+                     <small className="text-secondary">
+                       <small id="account">User: {this.state.account} </small>
+                     </small>
+                   </li>
+                 </ul>
+    
+            </nav>
+
+            {this.state.user
+              ?<Logged 
+                createCert={this.createCert}
+                certCount={this.state.certCount}
+                certs={this.state.certs} 
+              />
+              :<Main/>
+            }
+
+         
 
 
+            </Router>
+
+
+      </div>
         
-
-
-
-        <Router>
-     
-        <div>
-        <nav className=" flex-md-nowrap p-0 shadow">
-                        <Link to="/">VeriCert</Link>
-                        
-                    
-    
-                         <ul className="navbar-nav px-3">
-                           <li className="nav-item text-nowrap d-none d-sm-none d-sm-block">
-                             <small className="text-secondary">
-                               <small id="account">User: {this.state.account} </small>
-                             </small>
-                           </li>
-                         </ul>
-    
-                </nav>
-                <nav  className="navbar navbar-dark  bg-dark flex-md-nowrap p-0 shadow">
-
-                  <li>
-                    <Link to="/about">About</Link>
-                  </li>
-                  <li>
-                    <Link to="/create">Create cert</Link>
-                  </li>
-                  <li>
-                    <Link to="/query">Query</Link>
-                  </li>
-                  <li>
-                    <Link to="/list">List</Link>
-                  </li>
-
-                </nav>
-
-          </div>
-
-
-          <Switch>
-            <Route exact path="/" component={Home}/>
-            <Route exact path="/about" component={AboutPage} />
-            <Route exact path="/create" render={()=> <CertCreate 
-              createCert={this.createCert}
-              certCount={this.state.certCount}
-             />} />
-            <Route exact path="/query" render={()=> <QueryData
-                certs={this.state.certs} 
-              />
-            } />
-            <Route exact path="/list" render={()=> <CertList
-                certs={this.state.certs} 
-              />
-            } />
-            <Route exact path="/404" component={FailPage}/>
-            <Redirect to='/404' />
-
-
-          </Switch>
-          </Router>
-
-
       </div>
     );
   }
