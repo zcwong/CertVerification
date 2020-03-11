@@ -28,7 +28,7 @@ class Login extends Component {
   }
 
 
-  signup(e,firstName,lastName,school,proof,num){
+  signup(e,firstName,lastName,school,proof,num,email){
     e.preventDefault();
     fire.auth().createUserWithEmailAndPassword(this.state.email, this.state.password).then((u)=>{
     }).then((u)=>{console.log(u)})
@@ -44,6 +44,7 @@ class Login extends Component {
             School:school,
             Proof:proof,
             Num:num,
+            Email: email
     
           }).then(
           console.log("function executed")
@@ -60,7 +61,8 @@ class Login extends Component {
           const school = this.SchoolContent.value
           const proof = this.ProofContent.value
           const num = this.NumContent.value 
-          this.signup(event,fname, lname, school, proof, num)
+          const email = this.state.email
+          this.signup(event,fname, lname, school, proof, num, email)
 
         }}>
           <div className="form-group">

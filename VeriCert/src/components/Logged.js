@@ -60,8 +60,8 @@ class Main extends Component{
                
 
                  <Switch>
-                      <Route exact path="/" component={Home}/>
-                      <Route exact path="/login" component={Home}/>
+                      <Route exact path="/" component={Home2}/>
+                      <Route exact path="/login" component={Home2}/>
 
                       <Route exact path="/about" component={AboutPage} />
 
