@@ -10,36 +10,51 @@ class QueryData extends React.Component {
       this.state = {
        submitted: false,
        resultId: 0,
-       renderComplete: false
+       renderComplete: false,
+       
+
 
       }
 
   
     this.queryData = this.queryData.bind(this)
     this.renderId = this.renderId.bind(this)
+
     } 
 
 
 
     //include promise in query data, 
   queryData(input){
-
       db.collection('students').where("ic", "==", input)
         .get()
-        .then(snapshot => {
-          snapshot.forEach(doc =>{
-            var id = doc.data().id           
+        .then(snapshot =>{
+            if(snapshot.empty){
+              this.setState({
+                errorMsg:"Not found",
+                errorState:true
+              })
+            }else{
+               snapshot.forEach(doc =>{
+                  var id = doc.data().id           
 
-            this.setState({resultId: id} , function(){
-              this.setState({renderComplete: true})
-            } )
+                  this.setState({resultId: id} , function(){
+                      this.setState({
+                        renderComplete: true,
+                        errorState:false
+                      })
+                      })
          
-          })
+              })
 
-        })
-        .catch(function(error){
-          console.log(error);
-        })
+            }
+
+        }
+        )
+        .catch((error) => {
+          console.log(error)
+        
+      })
         //console.log("query function")
     }
 
@@ -48,14 +63,16 @@ class QueryData extends React.Component {
    //query data as promise, then renderId 
    //check if finish render, only call
    renderId() {
-        console.log("function called")      
         return <ResultCard resultId={this.state.resultId} certs={this.props.certs} />
   } 
 
 
+
+
+
     render() {
       return (
-              <div className="container-fluid mt-5">
+          <div className="container-fluid mt-5">
             <div className="row">
               
               <main role="main" className="col-lg-12 d-flex text-center">
@@ -82,10 +99,14 @@ class QueryData extends React.Component {
                   <button type="submit">search</button>
 
               </form>
+              
+ 
+              {this.state.errorState
+                  ?<h1>Certificate not found</h1>
+                  :<div>{this.state.renderComplete && this.renderId()}</div>
+              }
 
-
-               {this.state.renderComplete && this.renderId()}
-
+               
                 </div>
              </main>
             </div>

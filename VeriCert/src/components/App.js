@@ -2,8 +2,6 @@ import React, { Component } from 'react';
 import Web3 from 'web3';
 import './App.css';
 import VeriCert from '../abis/VeriCert.json'
-import Navbar from './Navbar.js'
-import Main from './Main.js'
 import {db,auth} from '../services/firebase'
 import fire from '../services/firebase'
 import {BrowserRouter as Router, Route, Switch, Link, Redirect} from "react-router-dom"
@@ -15,9 +13,11 @@ import FailPage from './FailPage.js'
 import AboutPage from './AboutPage.js'
 import Login from './Login'
 import Logged from './Logged.js'
+import Main from './Main.js'
 
 
-
+import Navbar from './Navbar.js'
+import Main2 from './Main2.js'
 
 
 
@@ -121,7 +121,6 @@ class App extends Component {
 
     authListener() {
     fire.auth().onAuthStateChanged((user) => {
-      console.log(user);
       if (user) {
         this.setState({ user });
       } else {
@@ -129,7 +128,6 @@ class App extends Component {
       }
     });
   }
-
 
 
 
@@ -177,6 +175,8 @@ class App extends Component {
       </div>
     );
   }
+
+
 }
 
 export default App;

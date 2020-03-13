@@ -45,7 +45,7 @@ class Main extends Component{
 
                     </nav>
                      <Switch>
-                          <Route exact path="/" component={Home}/>
+                          <Route  path="/" component={Home}/>
                           <Route exact path="/about" component={AboutPage} />
                           
                            <Route exact path="/query" render={()=> <QueryData
