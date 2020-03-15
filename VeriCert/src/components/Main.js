@@ -21,31 +21,72 @@ class Main extends Component{
 
   render(){
     return(
-
-    <div>
-
-            <Router>
-                     <nav  className="navbar navbar-dark  bg-dark flex-md-nowrap p-0 shadow">
-
-                           <li>
-                             <Link to="/about">About</Link>
-                           </li>
+       <Router>
+            <div>
+                    <div className="nav">
+                            <nav className=" flex-md-nowrap p-0 shadow">
+                        
+                            <Link to="/">
+                               <div className="logo">
+                                   <img src={require('../images/vericert.png')} width="150" height="40"  />
+                                   <img src={require('../images/logo.png')} width="55" height="50"  />
+                               </div>
+                            </Link>
                            
-                           <li>
-                             <Link to="/query">Query</Link>
+
+                             <small className="metamask">
+                             {this.props.account
+                                ?<p id="account">Metamask User: {this.props.account} </p>
+                                :<p>Hi,guest</p>
+                               
+                             }
+                             </small>
+                          
+            
+                          </nav>
+                    </div>
+                
+               
+                     <nav  className="navbar">
+
+
+                        <div className="list">
+                        <Link to="/about" className="link">
+                          <li id="navigate">
+                             About
                            </li>
-                                                      
-                           <li>
-                            <Link to="/login">Login</Link>
-                          </li>
+                           </Link>
+                        </div>   
+                           
+                         <div className="list">
+                          <Link to="/query">
+                           <li id="navigate">
+                             Query
+                           </li>
+                          </Link> 
+                          </div>
 
-                          <li>
-                            <Link to="/signup">Sign Up</Link>
-                          </li>
+                                                
+                        <div className="list">
+                          <Link to="/login">
+                          <li id="navigate">
+                             Login
+                           </li>
+                          </Link> 
+                          </div>
 
+                         
+                          <div className="list">
+                          <Link to="/signup">
+                          <li id="navigate">
+                             SignUp
+                           </li>
+                          </Link> 
+                          </div>
+                        
                     </nav>
                      <Switch>
-                          <Route  path="/" component={Home}/>
+                          <Route exact path="/" component={Home}/>
                           <Route exact path="/about" component={AboutPage} />
                           
                            <Route exact path="/query" render={()=> <QueryData
@@ -63,10 +104,10 @@ class Main extends Component{
 
                     </Switch>
 
-              </Router>
+              
 
     </div>
-
+</Router>
 
     );
   }

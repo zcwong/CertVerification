@@ -20,37 +20,96 @@ import Profile from './Profile.js'
 
 class Main extends Component{
 
+    constructor(props) {
+        super(props);
+        this.logout = this.logout.bind(this);
+    }
+
+
+    logout() {
+        fire.auth().signOut();
+    }
+
   render(){
     return(
 
     <div>
         <Router>
 
-                 <nav  className="navbar navbar-dark  bg-dark flex-md-nowrap p-0 shadow">
+                <div className="nav">
+                            <nav className=" flex-md-nowrap p-0 shadow">
+                        
+                          
+                             <Link to="/">
+                               <div className="logo">
+                                   <img src={require('../images/vericert.png')} width="150" height="40"  />
+                                   <img src={require('../images/logo.png')} width="55" height="50"  />
+                               </div>
+                            </Link>
 
-                       <li>
-                         <Link to="/">Home</Link>
-                       </li>
+                           
 
-                       <li>
-                         <Link to="/about">About</Link>
-                       </li>
+                             <small className="metamask">
+                             {this.props.account
+                                ?<p id="account">Metamask User: {this.props.account} </p>
+                                :<p>Hi,guest</p>
+                               
+                             }
+                             </small>
+
+            
+                          </nav>
+                    </div>
+                
+
+                 <nav  className="navbar">
+
+
+                        <div className="list">
+                        <Link to="/about" className="link">
+                          <li id="navigate">
+                             About
+                           </li>
+                           </Link>
+                        </div>   
+
                        
-                       <li>
-                         <Link to="/query">Query</Link>
-                       </li>
+                        <div className="list">
+                        <Link to="/query" className="link">
+                          <li id="navigate">
+                             Query
+                           </li>
+                           </Link>
+                        </div>  
 
-                       <li>
-                         <Link to="/list">List</Link>
-                       </li>
 
-                       <li>
-                         <Link to="/create">Create</Link>
-                       </li>
+                       
+                        <div className="list">
+                        <Link to="/list" className="link">
+                          <li id="navigate">
+                             List
+                           </li>
+                           </Link>
+                        </div>   
 
-                       <li>
-                         <Link to="/profile">Profile</Link>
-                       </li>
+                       
+                        <div className="list">
+                        <Link to="/create" className="link">
+                          <li id="navigate">
+                             Create
+                           </li>
+                           </Link>
+                        </div>   
+
+                       
+                        <div className="list">
+                        <Link to="/profile" className="link">
+                          <li id="navigate">
+                             Profile
+                           </li>
+                           </Link>
+                        </div>   
+                     
 
                                                                         
                        

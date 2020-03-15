@@ -133,34 +133,23 @@ class App extends Component {
 
   render() {
     return (
-      <div>
 
-      <div>
        <Router>
-       
-           <nav className=" flex-md-nowrap p-0 shadow">
-                <Link to="/">VeriCert</Link>
-                
-            
-    
-                 <ul className="navbar-nav px-3">
-                   <li className="nav-item text-nowrap d-none d-sm-none d-sm-block">
-                     <small className="text-secondary">
-                       <small id="account">User: {this.state.account} </small>
-                     </small>
-                   </li>
-                 </ul>
-    
-            </nav>
+          
+
+
 
             {this.state.user
               ?<Logged 
                 createCert={this.createCert}
                 certCount={this.state.certCount}
                 certs={this.state.certs} 
+                account={this.state.account}
               />
               :<Main
                 certs={this.state.certs}
+                account={this.state.account}
+
               />
             }
 
@@ -170,9 +159,6 @@ class App extends Component {
             </Router>
 
 
-      </div>
-        
-      </div>
     );
   }
 

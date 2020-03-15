@@ -1,5 +1,7 @@
 import React, { Component } from 'react';
 import fire from '../services/firebase'
+import {BrowserRouter as Router, Route, Switch, Link, Redirect} from "react-router-dom"
+
 
 class Home extends Component {
 
@@ -15,6 +17,9 @@ class Home extends Component {
     render() {
         return (
             <div>
+               
+
+
                 <h1>LOGGED IN</h1>
                 <button onClick={this.logout}>Logout</button>
             </div>
