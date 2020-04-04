@@ -58,7 +58,7 @@ class App extends Component {
     const networkData = VeriCert.networks[networkId]
 
     if(networkData){
-      const veriCert = web3.eth.Contract(VeriCert.abi, networkData.address)
+      const veriCert = new web3.eth.Contract(VeriCert.abi, networkData.address)
       this.setState({veriCert})
       const certCount = await veriCert.methods.certCount().call()
       this.setState({certCount})
@@ -88,9 +88,14 @@ class App extends Component {
     createCert(ic,name,course,result,date){
         this.setState({loading: true})
         this.state.veriCert.methods.createCert(ic,name,course,result,date).send({from: this.state.account})
-        .once('receipt', (receipt) => {
-         console.log("loaded")
-        }) 
+        .then(
+
+
+        setTimeout(() => {
+           window.location.reload(true); 
+
+          }, 5000)
+        )
       }
 
 

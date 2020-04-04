@@ -31,6 +31,10 @@ class CertCreate extends React.Component {
               
               <main role="main" className="col-lg-12 d-flex text-center">
               <div className="content mr-auto ml-auto">
+
+              <h1> Create cert </h1>
+                        <p>&nbsp;</p>
+
                <form onSubmit={(event) =>{
                 event.preventDefault()
                 const ic = this.icContent.value
@@ -39,10 +43,9 @@ class CertCreate extends React.Component {
                 const result = this.resultContent.value
                 const date = this.dateContent.value
                 this.props.createCert(ic,name,course,result,date)
-                const id = this.props.certCount.toNumber()+1
+                const id = Number(this.props.certCount)+1
                 this.addNewStudent(id,ic)
                 }}>
-
 
                 <div className="form-group mr-sm-2">
                   <input

@@ -35,8 +35,10 @@ class Login extends Component {
   
   render() {
     return (
-      <div className="col-md-6">
-      <h1>LOGIN</h1>
+      <div className="loginForm">
+      <h1 className="center">LOGIN</h1>
+      {"\n"}
+
         <form>
           <div className="form-group">
             <label htmlFor="exampleInputEmail1">Email address</label>
@@ -47,10 +49,14 @@ class Login extends Component {
             <label htmlFor="exampleInputPassword1">Password</label>
             <input  value={this.state.password} onChange={this.handleChange} type="password" name="password" className="form-control" id="exampleInputPassword1" placeholder="Password" />
           </div>
-          <button type="submit" onClick={this.login} className="btn btn-primary">Login</button>
-
-        </form>
           <small> {this.state.error}</small>
+           {"\n"}{"\n"}
+
+           <div className="center">   
+              <button type="submit" onClick={this.login} className="loginButton">Login</button>
+           </div>
+        </form>
+          
       </div>
 
 

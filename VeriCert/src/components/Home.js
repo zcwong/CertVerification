@@ -21,7 +21,7 @@ class Home extends Component {
                 <p>&nbsp;</p>
                 <p>&nbsp;</p>
 
-                <div className="container">
+                <div className="container-home">
 
                     <div className="one">
 
@@ -42,7 +42,7 @@ class Home extends Component {
 
                 </div>
 
-                <div className="container">
+                <div className="container-home">
                     <div className="one">                    
                         <img src={require('../images/bcImg.png')} width="85%"/>
                     </div>
@@ -65,7 +65,7 @@ class Home extends Component {
                 </div>
 
 
-                <div className="container">
+                <div className="container-home">
 
                     <div className="one">
 
@@ -85,43 +85,7 @@ class Home extends Component {
                     </div>
 
                 </div>
-                    <div className="footer">
-                    <MDBFooter color="blue" className="font-small pt-4 mt-4">
-                      <MDBContainer fluid className="text-center text-md-left">
-                        <MDBRow>
-                          <MDBCol md="4">
-                            <h5 className="title">Footer Content</h5>
-                            <p>
-                              Here you can use rows and columns here to organize your footer
-                              content.
-                            </p>
-                          </MDBCol>
-                          <MDBCol md="4">
-                            <h5 className="title">Footer Content</h5>
-                            <p>
-                              Here you can use rows and columns here to organize your footer
-                              content.
-                            </p>
-                          </MDBCol>
-
-                          <MDBCol md="4">
-                            <h5 className="title">Footer Content</h5>
-                            <p>
-                              Here you can use rows and columns here to organize your footer
-                              content.
-                            </p>
-                          </MDBCol>
-                        </MDBRow>
-                      </MDBContainer>
-                      <div className="footer-copyright text-center py-3">
-                        <MDBContainer fluid>
-                          &copy; {new Date().getFullYear()} Copyright: <a href="https://www.mdbootstrap.com"> MDBootstrap.com </a>
-                        </MDBContainer>
-                      </div>
-                    </MDBFooter>
-                </div>
-
-
+                   
                 
             </div>
         );

@@ -7,6 +7,9 @@ import fire from '../services/firebase'
 
 class Profile extends React.Component {
 
+    logout() {
+        fire.auth().signOut();
+    }
   constructor(props) {
       super(props)
       this.state = {
@@ -19,6 +22,8 @@ class Profile extends React.Component {
 
 
       }
+        this.logout = this.logout.bind(this);
+
 
   
   
@@ -50,7 +55,7 @@ class Profile extends React.Component {
             
          
           })
-
+          
         })
         .catch(function(error){
           console.log(error);
@@ -65,17 +70,28 @@ class Profile extends React.Component {
     render() {
 
     return (
-        <div>
+
+        <div className="profileContainer">
           
-          <h1>Profile</h1>
-          <p>{this.state.email}</p>
-          <p>{this.state.fname}</p>
-          <p>{this.state.lname}</p>
-          <p>{this.state.school}</p>
-          <p>{this.state.proof}</p>
-          <p>{this.state.num}</p>
-          
+          <h1 className="center">Profile</h1>
+          <p>Email: {this.state.email}</p>
+          <p>First name: {this.state.fname}</p>
+          <p>Last name: {this.state.lname}</p>
+          <p>Affiliated university: {this.state.school}</p>
+          <p>Office number: {this.state.num}</p>
+          <p>Wallet id: {this.state.proof}</p>
+          <button onClick={this.logout}>Logout</button>
+
+
+
+
+
+
+
         </div>
+
+
+
 
 
       )

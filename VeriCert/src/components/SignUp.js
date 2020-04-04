@@ -2,6 +2,8 @@ import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import fire from '../services/firebase'
 import {db,auth} from '../services/firebase'
+import FileUploader from 'react-firebase-file-uploader'
+
 
 
 class Login extends Component {
@@ -10,6 +12,7 @@ class Login extends Component {
 
     this.handleChange = this.handleChange.bind(this);
     this.signup = this.signup.bind(this);
+
 
     this.state = {
       email: '',
@@ -20,12 +23,16 @@ class Login extends Component {
       school:'',
       proof:'',
       num:'',
+      image:'',
+      imageURL:'',
+      progress:0,
     };
   }
 
   handleChange(e) {
     this.setState({ [e.target.name]: e.target.value });
   }
+
 
 
   signup(e,firstName,lastName,school,proof,num,email){
@@ -50,10 +57,14 @@ class Login extends Component {
           console.log("function executed")
           )
   }
+
+
+
+  
   render() {
     return (
-      <div className="col-md-6">
-      <h1>Sign Up</h1>
+      <div className="registerForm">
+      <h1 className="center">Sign Up</h1>
         <form onSubmit={(event) =>{
           event.preventDefault()
           const fname = this.FnameContent.value
@@ -73,7 +84,7 @@ class Login extends Component {
 
           <div className="form-group">
             <label htmlFor="exampleInputPassword1">Password</label>
-            <input  value={this.state.password} onChange={this.handleChange} type="password" name="password" className="form-control" id="exampleInputPassword1" placeholder="Password" />
+            <input  value={this.state.password} onChange={this.handleChange} type="password" name="password" className="form-control" id="exampleInputPassword1" placeholder="Enter password" />
           </div>
 
 
@@ -84,7 +95,7 @@ class Login extends Component {
                     type="text"
                     ref={(input) => {this.FnameContent = input}}
                     className="form-control"
-                    placeholder="Enter First name"
+                    placeholder="Enter first name"
                     required />
           </div>
 
@@ -95,7 +106,7 @@ class Login extends Component {
                     type="text"
                     ref={(input) => {this.LnameContent = input}}
                     className="form-control"
-                    placeholder="Enter Last name"
+                    placeholder="Enter last name"
                     required />
           </div>
 
@@ -122,7 +133,7 @@ class Login extends Component {
           </div>
 
           <div className="form-group">
-            <label htmlFor="InputNum">Number name</label>
+            <label htmlFor="InputNum">Office number</label>
                   <input
                     id="NumContent"
                     type="text"
@@ -131,13 +142,20 @@ class Login extends Component {
                     placeholder="Enter number"
                     required />
           </div>
-
-
-          
-          <button type="submit" className="btn btn-primary btn-block" style={{marginLeft: '25px'}} className="btn btn-success"> SignUp </button>
-
-        </form>
         <small> {this.state.error}</small>
+
+            {"\n"}
+
+ 
+
+          <div className="center">
+            <button type="submit" className="signUpButton"> Sign Up </button>
+          </div>
+        </form>
+
+
+
+
 
       </div>
 

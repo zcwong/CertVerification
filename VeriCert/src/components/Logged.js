@@ -66,23 +66,14 @@ class Main extends Component{
 
 
                         <div className="list">
-                        <Link to="/about" className="link">
+                        <Link to="/" className="link">
                           <li id="navigate">
-                             About
+                             Profile
                            </li>
                            </Link>
                         </div>   
 
-                       
-                        <div className="list">
-                        <Link to="/query" className="link">
-                          <li id="navigate">
-                             Query
-                           </li>
-                           </Link>
-                        </div>  
-
-
+                    
                        
                         <div className="list">
                         <Link to="/list" className="link">
@@ -102,13 +93,20 @@ class Main extends Component{
                         </div>   
 
                        
+                        
+
                         <div className="list">
-                        <Link to="/profile" className="link">
+                        <Link to="/query" className="link">
                           <li id="navigate">
-                             Profile
+                             Query
                            </li>
                            </Link>
-                        </div>   
+                        </div>  
+
+
+
+                       
+
                      
 
                                                                         
