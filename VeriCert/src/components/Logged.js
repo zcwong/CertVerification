@@ -10,11 +10,9 @@ import Home from './Home.js'
 import CertCreate from './CertCreate.js'
 import QueryData from './QueryData.js'
 import CertList from './CertList.js'
-import FailPage from './FailPage.js'
 import AboutPage from './AboutPage.js'
 import Login from './Login'
 import Home2 from './Home2.js'
-import Profile from './Profile.js'
 
 
 
@@ -115,10 +113,11 @@ class Main extends Component{
                 </nav>
 
                
-
+               
                  <Switch>
                       <Route exact path="/" component={Home2}/>
                       <Route exact path="/login" component={Home2}/>
+                      <Route exact path="/signup" component={Home2}/>
 
                       <Route exact path="/about" component={AboutPage} />
 
@@ -138,7 +137,8 @@ class Main extends Component{
 
                      } />
 
-                    <Route exact path="/profile" component={Profile} />
+                    <Route exact path="/profile" component={Home2} />
+                }
 
                      
             

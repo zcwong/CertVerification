@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import fire from '../services/firebase'
-import auth from "./Auth/Auth.js"
+
 
 
 class Login extends Component {
@@ -17,10 +17,14 @@ class Login extends Component {
     };
   }
 
+
+  //detech changes in form field and update state
   handleChange(e) {
     this.setState({ [e.target.name]: e.target.value });
   }
 
+
+  //login authentication
   login(e) {
     e.preventDefault();
     fire.auth().signInWithEmailAndPassword(this.state.email, this.state.password).then((u)=>{
@@ -36,7 +40,10 @@ class Login extends Component {
   render() {
     return (
       <div className="loginForm">
-      <h1 className="center">LOGIN</h1>
+      <h1 className="center"><b>LOGIN</b></h1>
+      <div className="center">
+        <img src={require('../images/user.png')} width="20%"/>
+      </div>
       {"\n"}
 
         <form>

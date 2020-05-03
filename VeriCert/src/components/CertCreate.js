@@ -7,7 +7,7 @@ class CertCreate extends React.Component {
 
 
 
-    
+ //add information to database   
     addNewStudent(id,ic){
         db.collection('students')
           .add({
@@ -23,17 +23,30 @@ class CertCreate extends React.Component {
     
     this.addNewStudent = this.addNewStudent.bind(this)
   }
+
+  
     render() {
 
         return (
+
+        <div>
+
+        <div className="center">
+             <p>&nbsp;</p>
+              <h1><b> Create cert</b> </h1>
+              <div className="center">
+                <img src={require('../images/create.png')} width="40%"/>
+              </div>
+            </div>
+        <div className="createForm">
         <div className="container-fluid mt-5">
             <div className="row">
+
               
               <main role="main" className="col-lg-12 d-flex text-center">
               <div className="content mr-auto ml-auto">
 
-              <h1> Create cert </h1>
-                        <p>&nbsp;</p>
+                                 
 
                <form onSubmit={(event) =>{
                 event.preventDefault()
@@ -103,6 +116,8 @@ class CertCreate extends React.Component {
              </main>
             </div>
         </div>
+        </div>
+      </div>
       )
     }
 } 

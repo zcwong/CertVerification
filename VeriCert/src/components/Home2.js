@@ -34,13 +34,17 @@ class Home extends Component {
   
     } 
 
+    //function to log out of account
     logout() {
         fire.auth().signOut();
     }
+
+
+    //get user information when component mount
     componentDidMount(){
         var user = fire.auth().currentUser.email;
-        //  console.log(user)
-
+        
+        //get info into database
          db.collection('school').where("Email", "==", user)
         .get()
         .then(snapshot => {
@@ -54,6 +58,7 @@ class Home extends Component {
             var num = doc.data().Num
             var proof = doc.data().Proof
 
+            //store info from database to a state
             this.setState({
                 email:email,
                 fname:fname,
@@ -82,8 +87,8 @@ class Home extends Component {
       }
 
 
+      //update new data to database
       updateData(event,Refname, Relname, Reschool, Reproof, Renum){
-        console.log("test")
         
         var docId = this.state.id
         db.collection('school').doc(docId)
@@ -98,8 +103,9 @@ class Home extends Component {
 
           })
 
-          //bug with sometimes cant update
-          window.location.reload(true); 
+
+         
+         window.location.reload(true); 
 
 
 
@@ -117,25 +123,29 @@ class Home extends Component {
         {this.state.loading
             ?<h1>Loading...</h1>
            :(
-              <div>
+              <div className="pContainer">
                 <div className="profileContainer">
                      <p>&nbsp;</p>
-                     <h1 className="center">Profile</h1>
-                     <p>Email: {this.state.email}</p>
-                     <p>First name: {this.state.fname}</p>
-                     <p>Last name: {this.state.lname}</p>
-                     <p>Affiliated university: {this.state.school}</p>
-                     <p>Office number: {this.state.num}</p>
-                     <p>Wallet id: {this.state.proof}</p><p>&nbsp;</p>
-                     <button class="loginButton"onClick={this.logout}>Logout</button>
+                     <h1 className="center"><b>Profile</b></h1>
+                     <div className="center">
+                        <img src={require('../images/profile.png')} width="10%"/>
+                      </div>
+                     <p><b>Email: {this.state.email}</b></p>
+                     <p><b>First name: {this.state.fname}</b></p>
+                     <p><b>Last name: {this.state.lname}</b></p>
+                     <p><b>Affiliated university: {this.state.school}</b></p>
+                     <p><b>Office number: {this.state.num}</b></p>
+                     <p><b>Wallet id: {this.state.proof}</b></p><p>&nbsp;</p>
+                     <button class="logoutButton"onClick={this.logout}>Logout</button>
                 
                  </div>
 
           <Popup
-            trigger={<button className="button"> Edit </button>}
+            trigger={<div className="center"><button className="editButton"> Edit </button></div>}
             modal
             closeOnDocumentClick
           >
+            <h1 className="center"><b>Edit Information</b></h1>
            <form onSubmit={(event) =>{
                   event.preventDefault()
                   
@@ -213,7 +223,7 @@ class Home extends Component {
                             required />
                   </div>
 
-        
+          
                  
         
                 

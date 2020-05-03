@@ -1,7 +1,6 @@
-
 .nav{
-	background-color: #005b96 ;
-	height:63px;
+  background-color: #005b96 ;
+  height:63px;
 
 
 }
@@ -9,50 +8,50 @@
 
 
 .logo{
-	position: absolute;
-  	left:25px;
-  	top:8px;
+  position: absolute;
+    left:25px;
+    top:8px;
 }
 
 .metamask{
-	color:white;
-	position: absolute;
-  	right:10px;
-  	top:23px;
+  color:white;
+  position: absolute;
+    right:10px;
+    top:23px;
 
 }
 
 .navbar{
-	background-color: #e3e3e3;
-	;
+  background-color: #e3e3e3;
+  ;
 
 
 }
 
 #navigate{
-	list-style-type: none;
-	
-	font-weight:bold;
-	
+  list-style-type: none;
+  
+  font-weight:bold;
+  
 
 }
 
 
 .list:hover{
-	  background-color: white;
+    background-color: white;
 
 }
 
 div.passage{
-	white-space: pre-wrap;
-	width:50%;
-	padding:20px;
-	border-style: solid;
-	text-align: left;
+  white-space: pre-wrap;
+  width:50%;
+  padding:20px;
+  border-style: solid;
+  text-align: left;
  }
 
  div.img{
- 	 border-style: solid;
+   border-style: solid;
 
  }
 
@@ -64,34 +63,80 @@ div.passage{
   padding: 10px;
 }
 
-.one {
+
+
+
+
+
+
+
+.p1 {
   width: 50%;
   height: 350px;
   float: left;
   margin: 10px;
+  position:relative;
+  left:150px;
 
 
 }
 
-.two {
+.pic1 {
   margin-left: 15%;
   height: 400px;
+  position:relative;
+  left:200px;
 
 }
 
+.p2 {
+  margin-left: 15%;
+  height: 400px;
+  position:relative;
+  right:30px;
+
+
+}
+
+.pic2 {
+  height: 350px;
+  float: left;
+  margin: 10px;
+  position:relative;
+  left:150px;
+}
+
+
+
+
+.container-home-pic{
+  margin-bottom: 200px;
+  overflow:hidden;
+}
+
+
+
+
+
+
+
+
+
+
+
 .footer{
-	background-color: #c9c9c9;
+  background-color: #c9c9c9;
 }
 
 .dapp{
   display: block;
   margin-left: auto;
   margin-right: auto;
-  width: 70%;	
+  width: 70%; 
 }
 
 .title{
-	text-align: center;
+  text-align: center;
 }
 
 
@@ -100,6 +145,7 @@ div.passage{
  margin: auto;
   overflow: hidden; 
   width:80%;
+  height:600px;
 }
 
 div.passageAbout{
@@ -109,34 +155,34 @@ div.passageAbout{
 }
 
 .ethereum{
-	position:relative;
-	left:30px;
-	bottom:100px;
+  position:relative;
+  left:30px;
+  bottom:100px;
 }
 
 .dappContainer{
-	width:75%;
-	margin: auto;
+  width:75%;
+  margin: auto;
   overflow: hidden;
 
 }
 
 .queryContainer{
-	height:800px;
-	width:90%;
-	margin: auto;
+  height:800px;
+  width:90%;
+  margin: auto;
 
 
 
 }
 
 .cert{
-	white-space: pre-wrap;
-	width:800px; 
-	height:620px; 
-	padding:20px; 
-	text-align:center; 
-	border: 10px solid #787878;
+  white-space: pre-wrap;
+  width:800px; 
+  height:620px; 
+  padding:20px; 
+  text-align:center; 
+  border: 10px solid #787878;
   overflow: hidden;
   margin-bottom: 100px;
 
@@ -144,41 +190,41 @@ div.passageAbout{
 }
 
 .certInner{
-	width:750px; 
-	height:570px; 
-	padding:20px; 
-	text-align:center; 
-	border: 5px solid #787878
+  width:750px; 
+  height:570px; 
+  padding:20px; 
+  text-align:center; 
+  border: 5px solid #787878
 
 }
 
 .certTitle{
-	font-size:50px; 
-	font-weight:bold
+  font-size:50px; 
+  font-weight:bold
 }
 
 .certContent{
-	font-size:25px;
+  font-size:25px;
 }
 
 .loginForm{
-	white-space: pre-wrap;
-	width:35%;
-	height:450px;
-	margin:auto;
-	padding:50px;
+  white-space: pre-wrap;
+  width:35%;
+  height:600px;
+  margin:auto;
+  padding:50px;
   overflow:hidden;
 
 }
 
 
 .registerForm{
-	white-space: pre-wrap;
+  white-space: pre-wrap;
   padding-top: 30px;
-	width:35%;
-	height:950px;
-	margin:auto;
-	padding:50px;
+  width:35%;
+  height:950px;
+  margin:auto;
+  padding:50px;
   overflow:hidden;
 
 
@@ -186,11 +232,32 @@ div.passageAbout{
 }
 
 .center{
-	text-align: center;
+  text-align: center;
 }
 
 
 .loginButton{
+  background-color: #306ac7;
+  border: none;
+  color: white;
+  padding: 15px 32px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+  opacity: 0.6;  
+  transition: 0.3s;
+
+
+}
+
+.logoutButton:hover {
+  opacity: 1;
+  
+
+}
+
+.logoutButton{
   background-color: #306ac7;
   border: none;
   color: white;
@@ -210,6 +277,11 @@ div.passageAbout{
   padding: 18px 35px;
 
 }
+
+
+
+
+
 
 
 
@@ -233,7 +305,7 @@ div.passageAbout{
 .editButton:hover {
   margin:20px;
   opacity: 1;
-  padding: 18px 35px;
+ 
 
 }
 
@@ -261,8 +333,24 @@ div.passageAbout{
 }
 
 .profileContainer{
-	
-	text-align: center;
+  
+  text-align: center;
+
+
+}
+
+.createForm{
+  height:350px;
+}
+
+
+.pContainer{
+    position:absolute;
+    left:350px;
+    bottom:50px;
+    width:1000px ;
+   border: 11px double #1C6EA4;
+
 
 }
 
@@ -467,6 +555,3 @@ div.passageAbout{
   border-radius: 18px;
   border: 1px solid #cfcece;
 }
-
-
-

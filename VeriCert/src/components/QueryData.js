@@ -25,6 +25,7 @@ class QueryData extends React.Component {
 
 
 
+  //return correct output depending on if loading is finished
   returnResult(){
     if(this.state.loading){
 
@@ -54,7 +55,8 @@ class QueryData extends React.Component {
 
   }
 
-    //include promise in query data, 
+
+  //check if input id has corresponding data in database
   queryData(input){
       db.collection('students').where("ic", "==", input)
         .get()
@@ -87,13 +89,12 @@ class QueryData extends React.Component {
           console.log(error)
         
       })
-        //console.log("query function")
+       
     }
 
 
 
-   //query data as promise, then renderId 
-   //check if finish render, only call
+   //pass state to ResultCard to render certificate
    renderId() {
 
         return <ResultCard resultId={this.state.resultId} certs={this.props.certs} />

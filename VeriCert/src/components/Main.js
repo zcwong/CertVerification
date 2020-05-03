@@ -10,7 +10,6 @@ import Home from './Home.js'
 import CertCreate from './CertCreate.js'
 import QueryData from './QueryData.js'
 import CertList from './CertList.js'
-import FailPage from './FailPage.js'
 import AboutPage from './AboutPage.js'
 import Login from './Login'
 import Home2 from './Home2.js'
@@ -112,31 +111,20 @@ class Main extends Component{
         <div class="row">
           <div class="col-sm-12 col-md-6">
             <h6>About</h6>
-            <p class="text-justify">Scanfcode.com <i>CODE WANTS TO BE SIMPLE </i> is an initiative  to help the upcoming programmers with the code. Scanfcode focuses on providing the most efficient code or snippets as the code wants to be simple. We will help programmers build up concepts in different programming languages that include C, C++, Java, HTML, CSS, Bootstrap, JavaScript, PHP, Android, SQL and Algorithm.</p>
+            <p class="text-justify">VeriCert.com is an application to help solving degree fraud using Blockchain technology. 
+            The technology behind Blockchain makes it the perfect match to solve this issuee as it is immutable, decentralized and transparent. 
+            This application will provide a platform for people to upload digital certificates to Blockchain and to verify their certificate in 
+            an easy and accessible way.</p>
           </div>
 
-          <div class="col-xs-6 col-md-3">
-            <h6>Categories</h6>
-            <ul class="footer-links">
-              <li><a href="http://scanfcode.com/category/c-language/">C</a></li>
-              <li><a href="http://scanfcode.com/category/front-end-development/">UI Design</a></li>
-              <li><a href="http://scanfcode.com/category/back-end-development/">PHP</a></li>
-              <li><a href="http://scanfcode.com/category/java-programming-language/">Java</a></li>
-              <li><a href="http://scanfcode.com/category/android/">Android</a></li>
-              <li><a href="http://scanfcode.com/category/templates/">Templates</a></li>
-            </ul>
+           <div class="col-sm-12 col-md-6">
+            <h6>Acknowledgement</h6>
+              <li><a class="twitter" href="#">Dapp University<i class="fa fa-twitter"></i></a></li>
+              <li><a class="dribbble" href="#">Mr Chew Sze Ker<i class="fa fa-dribbble"></i></a></li>
+              <li><a class="linkedin" href="#">Friends and Family<i class="fa fa-linkedin"></i></a></li>   
           </div>
 
-          <div class="col-xs-6 col-md-3">
-            <h6>Quick Links</h6>
-            <ul class="footer-links">
-              <li><a href="http://scanfcode.com/about/">About Us</a></li>
-              <li><a href="http://scanfcode.com/contact/">Contact Us</a></li>
-              <li><a href="http://scanfcode.com/contribute-at-scanfcode/">Contribute</a></li>
-              <li><a href="http://scanfcode.com/privacy-policy/">Privacy Policy</a></li>
-              <li><a href="http://scanfcode.com/sitemap/">Sitemap</a></li>
-            </ul>
-          </div>
+          
         </div>
         
       </div>

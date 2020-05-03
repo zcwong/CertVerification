@@ -29,14 +29,17 @@ class Login extends Component {
     };
   }
 
+  //when detect change, set target value to state
   handleChange(e) {
     this.setState({ [e.target.name]: e.target.value });
   }
 
 
 
+
   signup(e,firstName,lastName,school,proof,num,email){
     e.preventDefault();
+    //to create account using firebase authentication
     fire.auth().createUserWithEmailAndPassword(this.state.email, this.state.password).then((u)=>{
     }).then((u)=>{console.log(u)})
     .catch((error) => {
@@ -44,6 +47,7 @@ class Login extends Component {
         this.setState({error: error.message});
       })
 
+    //to store info into database
     db.collection('school')
           .add({
             FirstName: firstName,
@@ -64,7 +68,10 @@ class Login extends Component {
   render() {
     return (
       <div className="registerForm">
-      <h1 className="center">Sign Up</h1>
+      <h1 className="center"><b>Sign Up</b></h1>
+       <div className="center">
+        <img src={require('../images/signup.png')} width="25%"/>
+      </div>
         <form onSubmit={(event) =>{
           event.preventDefault()
           const fname = this.FnameContent.value
@@ -122,13 +129,13 @@ class Login extends Component {
           </div>
 
           <div className="form-group">
-            <label htmlFor="InputProof">Proof</label>
+            <label htmlFor="InputProof">Wallet id</label>
                   <input
                     id="ProofContent"
                     type="text"
                     ref={(input) => {this.ProofContent = input}}
                     className="form-control"
-                    placeholder="Enter proof"
+                    placeholder="Enter wallet id"
                     required />
           </div>
 

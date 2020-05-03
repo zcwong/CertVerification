@@ -21,12 +21,12 @@ class ResultCard extends React.Component {
 
 
     componentDidMount(){
-      //const walletid =  this.props.certs[id].author
       const id = this.props.resultId
     
     }
 
 
+    //to search if school name exists in database with the entered id
     querySchool(id){
         db.collection('school').where("Proof", "==", id)
         .get()
@@ -50,7 +50,7 @@ class ResultCard extends React.Component {
       
     }
 
-
+    //return specific result depend on verified state
     verifySchool(id){
       
       if(this.state.verified){

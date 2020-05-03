@@ -23,41 +23,38 @@ class Home extends Component {
 
                 <div className="container-home">
 
-                    <div className="one">
+                    <div className="p1">
 
                     <h1>Fake Certification on the Rise</h1>
-                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.{"\n"}
-                    Pellentesque dolor odio, faucibus quis arcu non, pulvinar ultricies metus. {"\n"}
-                    Nullam risus nisl, vestibulum ac aliquet id, laoreet nec nibh. Maecenas luctus nec{"\n"}
-                    arcu interdum finibus. Pellentesque tortor turpis, {"\n"}vehicula a nisl vel, pulvinar fringilla nisi. {"\n"}
-                    Pellentesque roin in faucibus tellus. Nullam euismod ex neque, sed tincidunt nibh ultricies in.
-                    Suspendisse dignissim est non viverra vehicula. Phasellus non lorem magna.
-                    Nulla faucibus sagittis vehicula. Duis sit amet gravida tellus, vitae dictum ipsum.
-                     Ut porta turpis sem, nec volutpat nibh tristique ut. Quisque tristique justo elementum, feugiat odio in, aliquam risus.</p>
+                    <p>Academic certificates are a huge part of the hiring process as they serve as a gauge to the candidate’s ability. {"\n"}
+                    Their results and performance are ways to measure their employability to potential employers.  {"\n"}
+                    It not only proves their academic skills and knowledge, but also their reliability and dedication to their work. {"\n"}
+                    There is a deep positive correlation between a candidate’s academic level with the rate of employment. {"\n"}
+                    Since it is so important, people will often fake their qualifications through fake degrees. </p>
 
                     </div>
-                    <div className="two">                    
-                        <img src={require('../images/bcImg.png')} width="50%"/>
+                    <div className="pic1">                    
+                        <img src={require('../images/fraud.jpg')} width="25%"/>
                     </div>
 
                 </div>
 
                 <div className="container-home">
-                    <div className="one">                    
-                        <img src={require('../images/bcImg.png')} width="85%"/>
+                    <div className="pic2">                    
+                        <img src={require('../images/bcImg.png')} width="65%"/>
                     </div>
 
-                    <div className="two">
+                    <div className="p2">
 
-                    <h1>Fake Certification on the Rise</h1>
-                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.{"\n"}
-                    Pellentesque dolor odio, faucibus quis arcu non, pulvinar ultricies metus. {"\n"}
-                    Nullam risus nisl, vestibulum ac aliquet id, laoreet nec nibh. Maecenas luctus nec{"\n"}
-                    arcu interdum finibus. Pellentesque tortor turpis, {"\n"}vehicula a nisl vel, pulvinar fringilla nisi. {"\n"}
-                    Pellentesque roin in faucibus tellus. Nullam euismod ex neque, sed tincidunt nibh ultricies in.
-                    Suspendisse dignissim est non viverra vehicula. Phasellus non lorem magna.
-                    Nulla faucibus sagittis vehicula. Duis sit amet gravida tellus, vitae dictum ipsum.
-                     Ut porta turpis sem, nec volutpat nibh tristique ut. Quisque tristique justo elementum, feugiat odio in, aliquam risus.</p>
+                    <h1>Verification through Blockchain</h1>
+                    <p>A blockchain-based decentralised web application is created to combat degree fraud.{"\n"}
+                     Blockchain has three main properties that makes it perfect for the job. {"\n"}
+                     It is immutable, transparent and also decentralised, which makes data stored on blockchain{"\n"}
+                     relatively safe and secure compared to the usual methods. By utilizing blockchain technology, {"\n"}
+                     certficate can be put on a blockchain once it is verified by a university official. {"\n"}
+                     Any user that wishes to verify their certificate and do it easily by accessing the data on the blockchain.{"\n"}
+                     With the afformentioned properties of blockchain, we can make sure that all the data that is {"\n"}
+                     on the blockchain is legitaimate and officially verified.  </p>
 
                     </div>
                     
@@ -65,25 +62,13 @@ class Home extends Component {
                 </div>
 
 
-                <div className="container-home">
-
-                    <div className="one">
-
-                    <h1>Fake Certification on the Rise</h1>
-                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.{"\n"}
-                    Pellentesque dolor odio, faucibus quis arcu non, pulvinar ultricies metus. {"\n"}
-                    Nullam risus nisl, vestibulum ac aliquet id, laoreet nec nibh. Maecenas luctus nec{"\n"}
-                    arcu interdum finibus. Pellentesque tortor turpis, {"\n"}vehicula a nisl vel, pulvinar fringilla nisi. {"\n"}
-                    Pellentesque roin in faucibus tellus. Nullam euismod ex neque, sed tincidunt nibh ultricies in.
-                    Suspendisse dignissim est non viverra vehicula. Phasellus non lorem magna.
-                    Nulla faucibus sagittis vehicula. Duis sit amet gravida tellus, vitae dictum ipsum.
-                     Ut porta turpis sem, nec volutpat nibh tristique ut. Quisque tristique justo elementum, feugiat odio in, aliquam risus.</p>
-
+                <div className="container-home-pic">
+                    <div className="center">
+                        <h1> Get Verified in 3 Simple Steps!</h1>
+                        <div className="pic3">
+                            <img src={require('../images/steps.png')} width="65%"/>
+                        </div>
                     </div>
-                    <div className="two">                    
-                        <img src={require('../images/bcImg.png')} width="50%"/>
-                    </div>
-
                 </div>
                    
                 

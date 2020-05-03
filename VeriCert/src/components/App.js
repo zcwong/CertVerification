@@ -5,19 +5,10 @@ import VeriCert from '../abis/VeriCert.json'
 import {db,auth} from '../services/firebase'
 import fire from '../services/firebase'
 import {BrowserRouter as Router, Route, Switch, Link, Redirect} from "react-router-dom"
-import Home from './Home.js'
-import CertCreate from './CertCreate.js'
-import QueryData from './QueryData.js'
-import CertList from './CertList.js'
-import FailPage from './FailPage.js'
-import AboutPage from './AboutPage.js'
-import Login from './Login'
 import Logged from './Logged.js'
 import Main from './Main.js'
 
 
-import Navbar from './Navbar.js'
-import Main2 from './Main2.js'
 
 
 
@@ -25,7 +16,7 @@ class App extends Component {
 
 
 
-
+//set up web3.js
   async componentWillMount(){
     await this.loadWeb3()
     await this.loadBlockchianData()
@@ -84,7 +75,7 @@ class App extends Component {
   }
 
 
-
+  //create cert function
     createCert(ic,name,course,result,date){
         this.setState({loading: true})
         this.state.veriCert.methods.createCert(ic,name,course,result,date).send({from: this.state.account})
@@ -94,7 +85,7 @@ class App extends Component {
         setTimeout(() => {
            window.location.reload(true); 
 
-          }, 5000)
+          }, 10000)
         )
       }
 
@@ -124,7 +115,9 @@ class App extends Component {
     //this.addNewStudent = this.addNewStudent.bind(this)
   }
 
-    authListener() {
+
+  //listen to user
+  authListener() {
     fire.auth().onAuthStateChanged((user) => {
       if (user) {
         this.setState({ user });
