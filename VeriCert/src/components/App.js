@@ -1,17 +1,22 @@
 import React, { Component } from 'react';
-import logo from '../logo.png';
 import Web3 from 'web3';
 import './App.css';
 import VeriCert from '../abis/VeriCert.json'
-import Navbar from './Navbar.js'
-import Main from './Main.js'
 import {db,auth} from '../services/firebase'
+import fire from '../services/firebase'
+import {BrowserRouter as Router, Route, Switch, Link, Redirect} from "react-router-dom"
+import Logged from './Logged.js'
+import Main from './Main.js'
+
+
+
+
 
 class App extends Component {
 
 
 
-
+//set up web3.js
   async componentWillMount(){
     await this.loadWeb3()
     await this.loadBlockchianData()
@@ -44,14 +49,13 @@ class App extends Component {
     const networkData = VeriCert.networks[networkId]
 
     if(networkData){
-      const veriCert = web3.eth.Contract(VeriCert.abi, networkData.address)
+      const veriCert = new web3.eth.Contract(VeriCert.abi, networkData.address)
       this.setState({veriCert})
       const certCount = await veriCert.methods.certCount().call()
       this.setState({certCount})
-      console.log(certCount.toNumber())
 
 
-      //load post
+
        //load cert
       for (var i = 1; i <=certCount; i++) {
         const cert = await veriCert.methods.certs(i).call()
@@ -71,43 +75,26 @@ class App extends Component {
   }
 
 
+  //create cert function
+    createCert(ic,name,course,result,date){
+        this.setState({loading: true})
+        this.state.veriCert.methods.createCert(ic,name,course,result,date).send({from: this.state.account})
+        .then(
 
 
-  createCert(ic,name,course,result,date){
-    this.setState({loading: true})
-    this.state.veriCert.methods.createCert(ic,name,course,result,date).send({from: this.state.account})
-    .once('receipt', (receipt) => {
-      this.setState({loading:false})
-    }) 
-  }
+        setTimeout(() => {
+           window.location.reload(true); 
 
-  addNewStudent(id,ic){
-      db.collection('students')
-        .add({
-          id: id,
-          ic:ic
+          }, 10000)
+        )
+      }
 
-        })
+
+    componentDidMount() {
+    this.authListener();
     }
 
-
-    queryData(input){
-
-      db.collection('students').where("ic", "==", input)
-        .get()
-        .then(snapshot => {
-          snapshot.forEach(doc =>{
-            var id = doc.data().id
-            console.log(id)
-          })
-
-        })
-        .catch(function(error){
-          console.log(error);
-        })
-        console.log("query function")
-    }
-
+  
 
 
 
@@ -119,31 +106,61 @@ class App extends Component {
       certCount: 0,
       certs: [],
       loading: true,
+      user:null,
+
     }
     this.createCert = this.createCert.bind(this)
-    this.addNewStudent = this.addNewStudent.bind(this)
-    this.queryData = this.queryData.bind(this)
+    this.authListener = this.authListener.bind(this);
+
+    //this.addNewStudent = this.addNewStudent.bind(this)
+  }
+
+
+  //listen to user
+  authListener() {
+    fire.auth().onAuthStateChanged((user) => {
+      if (user) {
+        this.setState({ user });
+      } else {
+        this.setState({ user: null });
+      }
+    });
   }
 
 
 
   render() {
     return (
-      <div>
-        <Navbar account={this.state.account}/>
-        {this.state.loading
-          ?<div id="loader" className="text-center mt-5"><p>Loading .. </p></div>
-          :<Main 
-          certs={this.state.certs} 
-          certCount={this.state.certCount}
-          createCert={this.createCert}
-          addNewStudent={this.addNewStudent}
-          />
 
-        }
-      </div>
+       <Router>
+          
+
+
+
+            {this.state.user
+              ?<Logged 
+                createCert={this.createCert}
+                certCount={this.state.certCount}
+                certs={this.state.certs} 
+                account={this.state.account}
+              />
+              :<Main
+                certs={this.state.certs}
+                account={this.state.account}
+
+              />
+            }
+
+         
+
+
+            </Router>
+
+
     );
   }
+
+
 }
 
 export default App;

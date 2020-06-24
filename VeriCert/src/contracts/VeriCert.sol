@@ -51,8 +51,6 @@ contract VeriCert {
 		certs[certCount]= Cert(certCount, _ic, _name, _course, _result, _issueDate, msg.sender);
 
 		//trigger event
-
-
 		emit CertCreated(certCount, _ic, _name, _course, _result, _issueDate, msg.sender);
 	}
 
